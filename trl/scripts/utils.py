@@ -37,8 +37,6 @@ class ScriptArguments:
     Args:
         dataset_name (`str`):
             Dataset name.
-        dataset_path (`str` or `None`, *optional*, defaults to `None`):
-            Path to the local dataset file.
         dataset_config (`str` or `None`, *optional*, defaults to `None`):
             Dataset configuration name. Corresponds to the `name` argument of the [`~datasets.load_dataset`] function.
         dataset_train_split (`str`, *optional*, defaults to `"train"`):
@@ -52,8 +50,7 @@ class ScriptArguments:
             type, inplace operation. See https://github.com/huggingface/transformers/issues/22482#issuecomment-1595790992.
     """
 
-    dataset_name: Optional[str] = None
-    dataset_path: Optional[str] = None
+    dataset_name: str
     dataset_config: Optional[str] = None
     dataset_train_split: str = "train"
     dataset_test_split: str = "test"

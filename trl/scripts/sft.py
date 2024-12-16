@@ -50,6 +50,7 @@ python trl/scripts/sft.py \
 """
 
 import argparse
+import os
 
 from datasets import load_dataset, load_from_disk
 from transformers import AutoTokenizer
@@ -89,8 +90,8 @@ def main(script_args, training_args, model_args):
     ################
     # Dataset
     ################
-    if script_args.dataset_path:
-        dataset = load_from_disk(script_args.dataset_path)
+    if script_args.dataset_name and os.path.exists(script_args.dataset_name):
+        dataset = load_from_disk(script_args.dataset_name)
     else:
         dataset = load_dataset(script_args.dataset_name, name=script_args.dataset_config)
 

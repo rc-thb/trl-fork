@@ -51,7 +51,7 @@ python trl/scripts/sft.py \
 
 import argparse
 
-from datasets import load_dataset
+from datasets import load_dataset, load_from_disk
 from transformers import AutoTokenizer
 
 from trl import (
@@ -89,7 +89,10 @@ def main(script_args, training_args, model_args):
     ################
     # Dataset
     ################
-    dataset = load_dataset(script_args.dataset_name, name=script_args.dataset_config)
+    if script_args.dataset_path:
+        dataset = load_from_disk(script_args.dataset_path)
+    else:
+        dataset = load_dataset(script_args.dataset_name, name=script_args.dataset_config)
 
     ################
     # Training
